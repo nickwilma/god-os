@@ -1,17 +1,34 @@
 import './App.css'
 import {Desktop} from "./Desktop.jsx";
 import {TaskBar} from "./TaskBar.jsx";
+import { useState } from 'react';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
+
+    const tempTasks = [
+        {
+            name: "Task1",
+            icon: "terminal",
+            content: "",
+        },
+        {
+            name: "Task2",
+            icon: "browser-firefox",
+            content: "",
+        }
+    ];
+
+    const [tasks, setTasks] = useState(tempTasks);
 
     return (
         <>
             <div className={"flex flex-col w-screen h-screen bg-green-50"}>
-                <div className={"flex-9"}>
+                <div className={"flex-grow"}>
                     <Desktop/>
                 </div>
-                <div className={"flex-1"}>
-                    <TaskBar />
+                <div className={""}>
+                    <TaskBar tasks={tasks} />
                 </div>
             </div>
         </>
