@@ -1,5 +1,6 @@
 import Terminal from "./Terminal.jsx";
 import Photos from "./Photos.jsx";
+import Mail from "./Mail.jsx";
 
 export const programs = [
     {
@@ -19,6 +20,12 @@ export const programs = [
         icon: 'question-circle',
         content: <div>Unknown program</div>,
         desktopPosition: {x: 300, y: 300},
+    },
+    {
+        name: 'Mail',
+        icon: 'envelope',
+        content: <Mail/>,
+        desktopPosition: {x: 300, y: 0},
     }
 ];
 
