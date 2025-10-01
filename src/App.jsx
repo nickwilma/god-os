@@ -6,16 +6,26 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
 import Photos from "./programs/Photos.jsx";
 
+
+
 const tempTasks = [
     {
         name: "Terminal",
         icon: "terminal",
-        open: true,
+        content: <h1>Hello</h1>,
+        show: 'open',
     },
     {
         name: "Photos",
         icon: "images",
-        open: true,
+        content: <Photos/>,
+        show: 'open',
+    },
+    {
+        name: 'Unknown',
+        icon: 'question-circle',
+        content: <div>Unknown program</div>,
+        show: 'focused',
     }
 ];
 
@@ -28,21 +38,15 @@ function App() {
     }
 
     const onTaskMinimise = (task) => {
-
+        setTasks(tasks.map(t => {
+            if(t.name === task.name) {
+                return {...t, show: 'minimised'}
+            }
+            return t;
+        }))
     }
 
     const [tasks, setTasks] = useState(tempTasks);
-
-    const renderTaskContent = (task) => {
-        switch(task.name) {
-            case 'Photos':
-                return <Photos/>;
-            case 'Terminal':
-                return <h1>Hello</h1>;
-            default:
-                return <div>Unknown program</div>;
-        }
-    }
 
     return (
         <>
@@ -53,7 +57,7 @@ function App() {
                     onTaskMinimise={onTaskMinimise} 
                     onTaskClose={onTaskClose}
                 >
-                    {renderTaskContent(t)}
+                    {t.content}
                 </ProgramWindow>
             ))}
             <div className={"flex flex-col w-screen h-screen bg-green-50"}>

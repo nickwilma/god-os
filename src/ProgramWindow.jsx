@@ -11,7 +11,7 @@ export default function ProgramWindow({task, onTaskMinimise,onTaskClose,children
         scale={1}
         nodeRef={nodeRef}>
         <div
-            style={{display: task.open ? "block" : "none"}}
+            style={{display: task.show === 'open' ? "block" : "none"}}
             ref={nodeRef}
             className={"absolute bg-emerald-200 resize z-10 gap-2 m-2 rounded overflow-scroll min-w-1/5 min-h-1/5 border-2 border-gray-400"}>
             <WindowHeader task={task} onTaskClose={onTaskClose} onTaskMinimise={onTaskMinimise} className={"header"}/>
