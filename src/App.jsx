@@ -5,6 +5,7 @@ import {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
 import Photos from "./programs/Photos.jsx";
+import Terminal from './programs/Terminal.jsx';
 
 function App() {
 
@@ -12,14 +13,14 @@ function App() {
         {
             name: "Terminal",
             icon: "terminal",
-            content: "Hello",
+            content: <Terminal/>,
             open: true,
         },
         {
             name: "Photos",
             icon: "images",
             content: <Photos/>,
-            open: true,
+            open: false,
         }
     ];
 
