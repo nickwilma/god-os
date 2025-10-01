@@ -5,7 +5,7 @@ export default function Calculator() {
     const [result, setResult] = useState("");
 
     function addVal(val) {
-        setResult(result + val);
+        setResult(result + String(val));
     }
 
     function delVal() {
@@ -13,7 +13,7 @@ export default function Calculator() {
     }
 
     function evalVal() {
-        setResult(evaluateWeirdMath(result));
+        setResult(String(evaluateWeirdMath(result)));
     }
 
     return <div className="w-full h-full bg-slate-900 text-white p-2 flex flex-col gap-2">
@@ -110,7 +110,5 @@ export default function Calculator() {
             return "💥 Internal error, but you're safe.";
         }
     }
-
-
 
 }
