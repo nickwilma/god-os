@@ -4,6 +4,7 @@ import {TaskBar} from "./TaskBar.jsx";
 import {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
+import Photos from "./programs/Photos.jsx";
 
 function App() {
 
@@ -12,12 +13,12 @@ function App() {
             name: "Terminal",
             icon: "terminal",
             content: "Hello",
-            open: false,
+            open: true,
         },
         {
             name: "Photos",
             icon: "images",
-            content: "Here you will find some photos",
+            content: <Photos/>,
             open: true,
         }
     ];
@@ -26,11 +27,15 @@ function App() {
         setTasks(tasks.filter(t => t.name !== task.name));
     }
 
+    const onTaskMinimise = (task) => {
+
+    }
+
     const [tasks, setTasks] = useState(tempTasks);
 
     return (
         <>
-            {tasks.map(t => <ProgramWindow task={t} onTaskClose={onTaskClose}>{t.content}</ProgramWindow>)}
+            {tasks.map(t => <ProgramWindow task={t} onTaskMinimise={onTaskMinimise} onTaskClose={onTaskClose}>{t.content}</ProgramWindow>)}
             <div className={"flex flex-col w-screen h-screen bg-green-50"}>
                 <div className={"flex-grow"}>
                     <Desktop/>
