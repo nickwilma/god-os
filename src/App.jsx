@@ -7,7 +7,6 @@ import ProgramWindow from "./ProgramWindow.jsx";
 import Photos from "./programs/Photos.jsx";
 
 
-
 const tempTasks = [
     {
         name: "Terminal",
@@ -32,18 +31,29 @@ const tempTasks = [
 function App() {
 
 
-
     const onTaskClose = (task) => {
         setTasks(tasks.filter(t => t.name !== task.name));
     }
 
     const onTaskMinimise = (task) => {
         setTasks(tasks.map(t => {
-            if(t.name === task.name) {
+            if (t.name === task.name) {
                 return {...t, show: 'minimised'}
             }
             return t;
         }))
+    }
+
+    const onTaskFocus = (task) => {
+        setTasks(tasks.map(t => {
+            if (t.name === task.name) {
+                return {...t, show: 'focused'};
+            }
+            if (t.name !== task.name && t.show === 'focused') {
+                return {...t, show: 'open'};
+            }
+            return t;
+        }));
     }
 
     const [tasks, setTasks] = useState(tempTasks);
@@ -51,11 +61,12 @@ function App() {
     return (
         <>
             {tasks.map(t => (
-                <ProgramWindow 
+                <ProgramWindow
                     key={t.name}
-                    task={t} 
-                    onTaskMinimise={onTaskMinimise} 
+                    task={t}
+                    onTaskMinimise={onTaskMinimise}
                     onTaskClose={onTaskClose}
+                    onTaskFocus={onTaskFocus}
                 >
                     {t.content}
                 </ProgramWindow>
@@ -65,7 +76,7 @@ function App() {
                     <Desktop/>
                 </div>
                 <div className={""}>
-                    <TaskBar tasks={tasks}/>
+                    <TaskBar tasks={tasks} onTaskFocus={onTaskFocus}/>
                 </div>
             </div>
         </>

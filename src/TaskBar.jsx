@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function TaskBar({tasks}) {
+export function TaskBar({tasks, onTaskFocus}) {
 
     const [time, setTime] = useState("");
 
@@ -32,7 +32,7 @@ export function TaskBar({tasks}) {
 
     function Tasks() {
         return tasks.map(task => 
-            <button className="">
+            <button className="" onClick={() => onTaskFocus(task)} key={task.name}>
                 <i className={"bg-stone-700 text-white rounded p-2 px-3 h-full w-auto fill-current bi bi-" + task.icon}></i>
             </button>
         );
