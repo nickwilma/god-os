@@ -14,11 +14,13 @@ export default function ProgramWindow({task, onTaskMinimise,onTaskClose,children
             style={{display: task.show === 'open' ? "block" : "none"}}
             ref={nodeRef}
             className={"absolute bg-emerald-200 resize z-10 gap-2 m-2 rounded min-w-1/5 min-h-1/5 border-2 border-gray-400 overflow-auto"}>
-            <div className="flex flex-col h-full w-full">
-                <WindowHeader task={task} onTaskClose={onTaskClose} onTaskMinimise={onTaskMinimise} className={"header"}/>
-                <HorizontalLine/>
-                <div className="flex-grow">
-                    {children}
+            <div className="absolute h-full w-full">
+                <div className="flex flex-col h-full w-full">
+                    <WindowHeader task={task} onTaskClose={onTaskClose} onTaskMinimise={onTaskMinimise} className={"header"}/>
+                    <HorizontalLine/>
+                    <div className="flex-grow">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>

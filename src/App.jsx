@@ -13,20 +13,20 @@ const tempTasks = [
     {
         name: "Terminal",
         icon: "terminal",
-        content: <h1>Hello</h1>,
+        content: <Terminal/>,
         show: 'open',
     },
     {
         name: "Photos",
         icon: "images",
         content: <Photos/>,
-        show: 'open',
+        show: 'closed',
     },
     {
         name: 'Unknown',
         icon: 'question-circle',
         content: <div>Unknown program</div>,
-        show: 'focused',
+        show: 'closed',
     }
 ];
 
