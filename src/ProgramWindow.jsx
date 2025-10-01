@@ -13,7 +13,7 @@ export default function ProgramWindow({task, onTaskMinimise,onTaskClose, onTaskF
         <div
             style={{display: task.show === 'open' || task.show === 'focused' ? "block" : "none"}}
             ref={nodeRef}
-            className={`absolute bg-emerald-200 resize z-10 gap-2 m-2 rounded min-w-1/5 min-h-1/5 border-2 border-gray-400 overflow-auto ${task.show === 'focused' ? "z-20" : "z-10"}`}>
+            className={`absolute bg-emerald-200 resize z-10 gap-2 m-2 rounded min-w-1/3 min-h-1/3 border-2 border-gray-400 overflow-auto ${task.show === 'focused' ? "z-20" : "z-10"}`}>
             <div className="absolute h-full w-full">
                 <div className="flex flex-col h-full w-full">
                     <WindowHeader task={task} onTaskClose={onTaskClose} onTaskFocus={onTaskFocus} onTaskMinimise={onTaskMinimise} className={"header"}/>
