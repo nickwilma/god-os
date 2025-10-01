@@ -6,22 +6,22 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
 import Photos from "./programs/Photos.jsx";
 
+const tempTasks = [
+    {
+        name: "Terminal",
+        icon: "terminal",
+        open: true,
+    },
+    {
+        name: "Photos",
+        icon: "images",
+        open: true,
+    }
+];
+
 function App() {
 
-    const tempTasks = [
-        {
-            name: "Terminal",
-            icon: "terminal",
-            content: "Hello",
-            open: true,
-        },
-        {
-            name: "Photos",
-            icon: "images",
-            content: <Photos/>,
-            open: true,
-        }
-    ];
+
 
     const onTaskClose = (task) => {
         setTasks(tasks.filter(t => t.name !== task.name));
@@ -33,9 +33,29 @@ function App() {
 
     const [tasks, setTasks] = useState(tempTasks);
 
+    const renderTaskContent = (task) => {
+        switch(task.name) {
+            case 'Photos':
+                return <Photos/>;
+            case 'Terminal':
+                return <h1>Hello</h1>;
+            default:
+                return <div>Unknown program</div>;
+        }
+    }
+
     return (
         <>
-            {tasks.map(t => <ProgramWindow task={t} onTaskMinimise={onTaskMinimise} onTaskClose={onTaskClose}>{t.content}</ProgramWindow>)}
+            {tasks.map(t => (
+                <ProgramWindow 
+                    key={t.name}
+                    task={t} 
+                    onTaskMinimise={onTaskMinimise} 
+                    onTaskClose={onTaskClose}
+                >
+                    {renderTaskContent(t)}
+                </ProgramWindow>
+            ))}
             <div className={"flex flex-col w-screen h-screen bg-green-50"}>
                 <div className={"flex-grow"}>
                     <Desktop/>
