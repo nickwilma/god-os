@@ -5,26 +5,27 @@ import {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
 import Photos from "./programs/Photos.jsx";
+import Terminal from './programs/Terminal.jsx';
 
 
 const tempTasks = [
     {
         name: "Terminal",
         icon: "terminal",
-        content: <h1>Hello</h1>,
+        content: <Terminal/>,
         show: 'open',
     },
     {
         name: "Photos",
         icon: "images",
         content: <Photos/>,
-        show: 'open',
+        show: 'closed',
     },
     {
         name: 'Unknown',
         icon: 'question-circle',
         content: <div>Unknown program</div>,
-        show: 'focused',
+        show: 'closed',
     }
 ];
 

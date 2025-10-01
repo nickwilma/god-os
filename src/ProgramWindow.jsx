@@ -13,10 +13,16 @@ export default function ProgramWindow({task, onTaskMinimise,onTaskClose, onTaskF
         <div
             style={{display: task.show === 'open' || task.show === 'focused' ? "block" : "none"}}
             ref={nodeRef}
-            className={`absolute bg-emerald-200 resize gap-2 m-2 rounded overflow-scroll min-w-1/5 min-h-1/5 border-2 border-gray-400 ${task.show === 'focused' ? "z-20" : "z-10"}`}>
-            <WindowHeader task={task} onTaskClose={onTaskClose} onTaskMinimise={onTaskMinimise} onTaskFocus={onTaskFocus} className={"header"}/>
-            <HorizontalLine/>
-            {children}
+            className={`absolute bg-emerald-200 resize z-10 gap-2 m-2 rounded min-w-1/5 min-h-1/5 border-2 border-gray-400 overflow-auto ${task.show === 'focused' ? "z-20" : "z-10"}`}>
+            <div className="absolute h-full w-full">
+                <div className="flex flex-col h-full w-full">
+                    <WindowHeader task={task} onTaskClose={onTaskClose} onTaskMinimise={onTaskMinimise} className={"header"}/>
+                    <HorizontalLine/>
+                    <div className="flex-grow">
+                        {children}
+                    </div>
+                </div>
+            </div>
         </div>
     </Draggable>
 }
