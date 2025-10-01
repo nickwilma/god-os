@@ -1,7 +1,7 @@
 import Draggable from "react-draggable";
 import {useRef} from "react";
 
-export default function ProgramWindow({task, children}) {
+export default function ProgramWindow({task, onTaskMinimise,onTaskClose,children}) {
     const nodeRef = useRef(null);
 
     return <Draggable
@@ -11,22 +11,27 @@ export default function ProgramWindow({task, children}) {
         scale={1}
         nodeRef={nodeRef}>
         <div
+            style={{display: task.open ? "block" : "none"}}
             ref={nodeRef}
             className={"absolute bg-emerald-200 resize z-10 gap-2 m-2 rounded overflow-scroll min-w-1/5 min-h-1/5 border-2 border-gray-400"}>
-            <WindowHeader task={task}/>
+            <WindowHeader task={task} onTaskClose={onTaskClose} onTaskMinimise={onTaskMinimise} className={"header"}/>
             <HorizontalLine/>
             {children}
         </div>
     </Draggable>
 }
 
-function WindowHeader({task}) {
-    return <div className={"flex flex-row justify-between pe-2 pl-2 header"}>
+function WindowHeader({task, onTaskMinimise, onTaskClose, className = ''}) {
+    return <div className={`flex flex-row justify-between pe-2 pl-2 ${className}`}>
         <i className={"bi bi-" + task.icon}></i>
-        <span>{task.name}</span>
+        <span className="select-none">{task.name}</span>
         <div className={"flex flex-row gap-2"}>
-            <i className="bi bi-dash-lg"></i>
-            <i className="bi bi-x-lg"></i>
+            <button onClick={() => onTaskMinimise(task)} className="btn btn-sm">
+                <i className="bi bi-dash-lg"></i>
+            </button>
+            <button onClick={() => onTaskClose(task)} className="btn btn-sm">
+                <i className="bi bi-x-lg"></i>
+            </button>
         </div>
     </div>
 }
