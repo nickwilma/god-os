@@ -4,30 +4,13 @@ import {TaskBar} from "./TaskBar.jsx";
 import {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
-import Photos from "./programs/Photos.jsx";
-import Terminal from './programs/Terminal.jsx';
+import {programs} from "./programs/lib.jsx";
 
 
-const tempTasks = [
-    {
-        name: "Terminal",
-        icon: "terminal",
-        content: <Terminal/>,
-        show: 'open',
-    },
-    {
-        name: "Photos",
-        icon: "images",
-        content: <Photos/>,
-        show: 'closed',
-    },
-    {
-        name: 'Unknown',
-        icon: 'question-circle',
-        content: <div>Unknown program</div>,
-        show: 'closed',
-    }
-];
+const tempTasks = programs.map(p => {
+    return {...p, show: 'open'}
+});
+
 
 function App() {
 
