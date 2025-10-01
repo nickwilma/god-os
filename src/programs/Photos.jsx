@@ -40,7 +40,7 @@ export default function Photos() {
                 showProps ? <div>{
                     Object.keys(pics[counter].props || {}).map(key => <span className="flex w-[300px]">
                         <div className="w-1/2">{key}</div>
-                        <div className="w-1/2">{pics[counter].props[key]}</div>
+                        <div className="w-1/2 text-right">{pics[counter].props[key]}</div>
                     </span>)
                 }</div> : <img src={pics[counter].url} alt={pics[counter].name} className="w-[300px]"/>
             }
