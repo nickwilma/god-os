@@ -4,16 +4,16 @@ import {TaskBar} from "./TaskBar.jsx";
 import {useState} from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProgramWindow from "./ProgramWindow.jsx";
-import {programs} from "./programs/lib.jsx";
-
-
-const tempTasks = programs.map(p => {
-    return {...p, show: 'open'}
-});
 
 
 function App() {
 
+    const addTask = (task) => {
+        if (tasks.some(t => t.name === task.name)) {
+            return;
+        }
+        setTasks([...tasks, {...task, show: 'open'}]);
+    }
 
     const onTaskClose = (task) => {
         setTasks(tasks.filter(t => t.name !== task.name));
@@ -40,7 +40,7 @@ function App() {
         }));
     }
 
-    const [tasks, setTasks] = useState(tempTasks);
+    const [tasks, setTasks] = useState([]);
 
     return (
         <>
@@ -57,7 +57,7 @@ function App() {
             ))}
             <div className={"flex flex-col w-screen h-screen bg-green-50"}>
                 <div className={"flex-grow"}>
-                    <Desktop/>
+                    <Desktop startProgram={addTask}/>
                 </div>
                 <div className={""}>
                     <TaskBar tasks={tasks} onTaskFocus={onTaskFocus}/>
